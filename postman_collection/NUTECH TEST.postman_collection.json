@@ -1,0 +1,396 @@
+{
+  "info": {
+    "_postman_id": "451934be-c462-4650-9836-67f4692860b3",
+    "name": "NUTECH TEST",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "13747004"
+  },
+  "item": [
+    {
+      "name": "Registrasi",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"user@gmail.com\",\r\n    \"first_name\": \"User\",\r\n    \"last_name\": \"Nutech\",\r\n    \"password\": \"qwertyui\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_server}}/registration",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "registration"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "if (pm.response.code === 200) {\r",
+              "    let jsonData = pm.response.json();\r",
+              "\r",
+              "    pm.environment.set(\r",
+              "        \"token\",\r",
+              "            jsonData.data.token\r",
+              "    );\r",
+              "\r",
+              "    \r",
+              "}\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"user@gmail.com\",\r\n    \"password\": \"qwertyui\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_server}}/login",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Banners",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url_server}}/banner",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "banner"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Services",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url_server}}/services",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "services"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Balance",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url_server}}/balance",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "balance"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Topup",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"top_up_amount\": 1000000\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_server}}/topup",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "topup"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Profile",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url_server}}/profile",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "profile"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UPDATE",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"first_name\": \"Hanafi\",\r\n    \"last_name\": \"Bisri\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_server}}/profile/update",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "profile",
+            "update"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Transaction",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"service_code\": \"PGN\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url_server}}/transaction",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "transaction"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "History",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url_server}}/transaction/history",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "transaction",
+            "history"
+          ],
+          "query": [
+            {
+              "key": "offset",
+              "value": "0",
+              "disabled": true
+            },
+            {
+              "key": "limit",
+              "value": "100",
+              "disabled": true
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "UPLOAD",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "uuid": "80094134-2b25-4eb0-b3a5-1e2e97ef9516",
+              "value": null
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{url_server}}/profile/image",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "profile",
+            "image"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GAMBAR",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "{{url_server}}/profile/image",
+          "host": [
+            "{{url_server}}"
+          ],
+          "path": [
+            "profile",
+            "image"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
